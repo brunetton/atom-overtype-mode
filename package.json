@@ -6,6 +6,7 @@
   "activationEvents": ["overtype-mode:toggle"],
   "repository": "https://github.com/atom/atom-overtype-mode",
   "license": "MIT",
+  "repository": "https://github.com/brunetton/atom-overtype-mode",
   "dependencies": {
     "event-kit": "*"
   }
