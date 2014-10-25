@@ -7,8 +7,5 @@
     "overtype-mode:toggle"
   ],
   "repository": "https://github.com/brunetton/atom-overtype-mode",
-  "license": "MIT",
-  "dependencies": {
-    "event-kit": "*"
-  }
+  "license": "MIT"
 }

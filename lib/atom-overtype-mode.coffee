@@ -1,5 +1,4 @@
 {$} = require "atom"
-{CompositeDisposable} = require 'event-kit'
 
 class OvertypeMode
   # Internal: The activation state of the minimap package.
