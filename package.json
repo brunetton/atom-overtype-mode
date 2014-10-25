@@ -1,0 +1,12 @@
+{
+  "name": "atom-overtype-mode",
+  "main": "./lib/atom-overtype-mode",
+  "version": "0.1.0",
+  "description": "Provides overtype mode for Atom in GNU/Linux environment",
+  "activationEvents": ["overtype-mode:toggle"],
+  "repository": "https://github.com/atom/atom-overtype-mode",
+  "license": "MIT",
+  "dependencies": {
+    "event-kit": "*"
+  }
+}
