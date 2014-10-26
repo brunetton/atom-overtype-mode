@@ -24,7 +24,6 @@ class OvertypeMode
       # observe cursor visibility change (typically when moving from insert to select mode)
       @observers.push textEditor.getLastCursor().onDidChangeVisibility (visibility) ->
         # change cursor visual
-        console.log('change visibility: ', visibility)
         atom.workspaceView.getActiveView().find(".cursor").addClass('overtype-cursor')
     else
       # stop observing text insert events
