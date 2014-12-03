@@ -6,3 +6,10 @@
   border: 1px solid @syntax-cursor-color;
   background-color: fade(@syntax-cursor-color, 20%);
 }
+
+// Preventing blinking when editor is not focused
+atom-text-editor.is-focused .cursors.blink-off .cursor {
+  &.overtype-cursor {
+    opacity: 1;
+  }
+}
