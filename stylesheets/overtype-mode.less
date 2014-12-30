@@ -1,15 +1,12 @@
-// Using current syntax cursor colour
-@import 'syntax-variables';
+// .block-cursor(@visibility: visible) {
+//   border: 0;
+//   // background-color: @syntax-cursor-color;
+//   visibility: @visibility;
+//   // opacity: 0.5;
+//   color: red;
+// }
 
-// Border around and semi-transparent backround
 .cursors .overtype-cursor {
-  border: 1px solid @syntax-cursor-color;
-  background-color: fade(@syntax-cursor-color, 20%);
-}
-
-// Preventing blinking when editor is not focused
-atom-text-editor.is-focused .cursors.blink-off .cursor {
-  &.overtype-cursor {
-    opacity: 1;
-  }
+  border-left: none;
+  background-color: red;
 }
