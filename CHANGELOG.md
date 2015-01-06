@@ -1,3 +1,5 @@
+# Changelog
+
 ## 0.2.2 - theme changes
 - Thanks to @muchweb for his contribution around cursor appearance
 
