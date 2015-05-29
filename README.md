@@ -5,7 +5,7 @@ The aim of this package is to provide a basic overtype mode for Atom under GNU/L
 
 # Usage
   * Install package
-  * Switch beetween insert and overtype mode by using `Ins` key. Cursor transforms on a red square to clearely indicate that overtype is enabled
+  * Switch beetween insert and overtype mode by using `Ins` key. Cursor transforms on a square to indicate that overtype is enabled
 
 
 # Todo
