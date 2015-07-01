@@ -1,37 +1,46 @@
 {$} = require "atom"
+{CompositeDisposable} = require 'atom'
+
 
 class OvertypeMode
-  # Internal: The activation state of the minimap package.
   active: false
-  # list of keyboard events to follow
-  observers: []
+  command: null
+  className: 'overtype-cursor'
+  willInsertText: null
+  didChangeVisibility: null
 
   activate: (state) ->
-    # Register toggle command
-    atom.workspaceView.command 'overtype-mode:toggle', => @toggle()
+    @command = atom.commands.add 'atom-text-editor', 'overtype-mode:toggle', => @toggle()
+    @willInsertText = new CompositeDisposable
+    @didChangeVisibility = new CompositeDisposable
+
+  deactivate: ->
+    @disable()
+    @willInsertText = null
+    @didChangeVisibility = null
+    @command.dispose()
+    @command = null
 
   toggle: ->
-    @active = !@active
-    if @active
-      # observe text insert of current text editor, and add this observer to observers list
-      textEditor = atom.workspace.getActiveTextEditor()
-      @observers.push textEditor.onWillInsertText (event) ->
-        editor = atom.workspace.getActiveTextEditor()
-        # Delete next character
-        editor.delete() unless editor.getLastCursor().isAtEndOfLine()
-      # change cursor visual
-      atom.workspaceView.getActiveView().find(".cursor").addClass('overtype-cursor')
-      # observe cursor visibility change (typically when moving from insert to select mode)
-      @observers.push textEditor.getLastCursor().onDidChangeVisibility (visibility) ->
-        # change cursor visual
-        atom.workspaceView.getActiveView().find(".cursor").addClass('overtype-cursor')
+    if !@active
+      @enable()
     else
-      # stop observing text insert events
-      for observer in @observers
-        observer.dispose()
-      @observers = []
-      # remove cursor visual
-      atom.workspaceView.getActiveView().find(".cursor").removeClass('overtype-cursor')
+      @disable()
 
+  enable: ->
+    atom.workspace.observeTextEditors (editor) =>
+      atom.views.getView(editor).classList.add(@className)
+      @willInsertText.add editor.onWillInsertText (text) =>
+        editor.delete() unless editor.getLastCursor().isAtEndOfLine()
+      @didChangeVisibility.add editor.getLastCursor().onDidChangeVisibility (visibility) =>
+        atom.views.getView(editor).classList.add(@className)
+    @active = true
+
+  disable: ->
+    atom.workspace.observeTextEditors (editor) =>
+      atom.views.getView(editor).classList.remove(@className)
+    @willInsertText.dispose()
+    @didChangeVisibility.dispose()
+    @active = false
 
 module.exports = new OvertypeMode
