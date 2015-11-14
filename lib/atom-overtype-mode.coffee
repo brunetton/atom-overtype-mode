@@ -39,10 +39,12 @@ class OvertypeMode
     @active = false
 
   onType: (editor) ->
-    return if editor.getLastCursor().isAtEndOfLine()
     # Only trigger when user types manually
     return unless window.event instanceof TextEvent
-    editor.delete()
+
+    editor.mutateSelectedText (selection) =>
+      return if selection.isEmpty() && selection.cursor.isAtEndOfLine()
+      selection.delete()
 
   onAfterType: (editor) ->
     return unless window.event instanceof TextEvent
