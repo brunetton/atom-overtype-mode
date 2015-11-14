@@ -42,9 +42,10 @@ class OvertypeMode
     # Only trigger when user types manually
     return unless window.event instanceof TextEvent
 
-    editor.mutateSelectedText (selection) =>
-      return if selection.isEmpty() && selection.cursor.isAtEndOfLine()
-      selection.delete()
+    for selection in editor.getSelections()
+      continue if selection.isEmpty() && selection.cursor.isAtEndOfLine()
+      if selection.isEmpty()
+        selection.selectRight()
 
   onAfterType: (editor) ->
     return unless window.event instanceof TextEvent
