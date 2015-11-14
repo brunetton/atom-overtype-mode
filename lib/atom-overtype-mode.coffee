@@ -11,13 +11,9 @@ class OvertypeMode
 
   activate: (state) ->
     @command = atom.commands.add 'atom-text-editor', 'overtype-mode:toggle', => @toggle()
-    @willInsertText = new CompositeDisposable
-    @didChangeVisibility = new CompositeDisposable
 
   deactivate: ->
     @disable()
-    @willInsertText = null
-    @didChangeVisibility = null
     @command.dispose()
     @command = null
 
@@ -28,10 +24,12 @@ class OvertypeMode
       @disable()
 
   enable: ->
+    @willInsertText = new CompositeDisposable
+    @didChangeVisibility = new CompositeDisposable
     atom.workspace.observeTextEditors (editor) =>
       atom.views.getView(editor).classList.add(@className)
       @willInsertText.add editor.onWillInsertText (text) =>
-        editor.delete() unless editor.getLastCursor().isAtEndOfLine()
+        @overtype editor
       @didChangeVisibility.add editor.getLastCursor().onDidChangeVisibility (visibility) =>
         atom.views.getView(editor).classList.add(@className)
     @active = true
@@ -42,5 +40,8 @@ class OvertypeMode
     @willInsertText.dispose()
     @didChangeVisibility.dispose()
     @active = false
+
+  overtype: (editor) ->
+    editor.delete() unless editor.getLastCursor().isAtEndOfLine()
 
 module.exports = new OvertypeMode
