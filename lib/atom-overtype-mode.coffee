@@ -6,18 +6,13 @@ class OvertypeMode
   active: false
   command: null
   className: 'overtype-cursor'
-  willInsertText: null
-  didChangeVisibility: null
+  editorCallbacks: null
 
   activate: (state) ->
     @command = atom.commands.add 'atom-text-editor', 'overtype-mode:toggle', => @toggle()
-    @willInsertText = new CompositeDisposable
-    @didChangeVisibility = new CompositeDisposable
 
   deactivate: ->
     @disable()
-    @willInsertText = null
-    @didChangeVisibility = null
     @command.dispose()
     @command = null
 
@@ -28,19 +23,31 @@ class OvertypeMode
       @disable()
 
   enable: ->
+    @editorCallbacks = new CompositeDisposable
     atom.workspace.observeTextEditors (editor) =>
       atom.views.getView(editor).classList.add(@className)
-      @willInsertText.add editor.onWillInsertText (text) =>
-        editor.delete() unless editor.getLastCursor().isAtEndOfLine()
-      @didChangeVisibility.add editor.getLastCursor().onDidChangeVisibility (visibility) =>
+      @editorCallbacks.add editor.onWillInsertText (text) => @onType(editor)
+      @editorCallbacks.add editor.onDidInsertText (text) => @onAfterType(editor)
+      @editorCallbacks.add editor.getLastCursor().onDidChangeVisibility (visibility) =>
         atom.views.getView(editor).classList.add(@className)
     @active = true
 
   disable: ->
     atom.workspace.observeTextEditors (editor) =>
       atom.views.getView(editor).classList.remove(@className)
-    @willInsertText.dispose()
-    @didChangeVisibility.dispose()
+    @editorCallbacks.dispose()
     @active = false
+
+  onType: (editor) ->
+    # Only trigger when user types manually
+    return unless window.event instanceof TextEvent
+
+    for selection in editor.getSelections()
+      continue if selection.isEmpty() && selection.cursor.isAtEndOfLine()
+      if selection.isEmpty()
+        selection.selectRight()
+
+  onAfterType: (editor) ->
+    return unless window.event instanceof TextEvent
 
 module.exports = new OvertypeMode
