@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+- Compatibility with Atom 1.2.0 (Thanks to @Yoshi325)
+- Better support for multiple selections
+- Grouped undo/redo. It is no longer necessary to press Ctrl+Z for each character typed.
+
 ## 0.2.3 - update to shadow DOM
 - Fix #5. Thanks again @muchweb for his contribution to make it compatible with [shadow DOM](https://atom.io/docs/latest/upgrading/upgrading-your-syntax-theme)
 
@@ -7,4 +12,4 @@
 - Thanks to @muchweb for his contribution around cursor appearance
 
 ## 0.2.1
-first published version
+- First published version
