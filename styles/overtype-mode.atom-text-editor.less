@@ -1,0 +1,21 @@
+// Using current syntax cursor colour
+@import 'syntax-variables';
+
+atom-text-editor.overtype-cursor::shadow .cursors .cursor
+{
+  opacity: 1;
+  color: transparent;
+  transition-property: background-color, border-color, opacity;
+  transition-duration: 3ms;
+  border: 1px solid @syntax-cursor-color;
+  background-color: fade(@syntax-cursor-color, 20%);
+}
+
+atom-text-editor.overtype-cursor::shadow .cursors.blink-off .cursor
+{
+  border: none;
+}
+
+atom-text-editor[mini]:not(.is-focused)::shadow .cursors .cursor {
+  display: none;
+}

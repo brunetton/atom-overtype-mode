@@ -3,9 +3,9 @@
   "main": "./lib/atom-overtype-mode",
   "version": "0.2.3",
   "description": "Provides overtype mode for Atom in GNU/Linux environment",
-  "activationEvents": [
-    "overtype-mode:toggle"
-  ],
+  "activationCommands": {
+    "atom-text-editor": "overtype-mode:toggle"
+  },
   "repository": "https://github.com/brunetton/atom-overtype-mode",
   "license": "MIT"
 }
