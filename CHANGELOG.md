@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.1
+- Updated documentation
+
 ## 0.3.0
 - Compatibility with Atom 1.2.0 (Thanks to @Yoshi325)
 - Better support for multiple selections

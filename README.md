@@ -1,10 +1,7 @@
 # Overtype mode for Atom
 
-This package provides overtype mode for Atom.
+Switch beetween insert and overtype mode by using `Ins` key.
+Cursor turns into a rectangle to indicate that overtype is enabled.
 
-# Usage
-  * Install package
-  * Switch beetween insert and overtype mode by using `Ins` key. Cursor transforms on a square to indicate that overtype is enabled
+![](http://i.imgur.com/DejekQN.gif)
 
-# Todo
-  * Adapt for autocomplete
