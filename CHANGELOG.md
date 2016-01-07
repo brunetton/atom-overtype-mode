@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.2
+- Fix erratic behaviour after opening new files
+
 ## 0.3.1
 - Updated documentation
 
