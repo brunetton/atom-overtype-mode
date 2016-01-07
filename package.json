@@ -1,7 +1,7 @@
 {
   "name": "atom-overtype-mode",
   "main": "./lib/atom-overtype-mode",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Provides overtype mode for Atom",
   "activationCommands": {
     "atom-text-editor": "overtype-mode:toggle"
