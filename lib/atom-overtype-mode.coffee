@@ -27,7 +27,6 @@ class OvertypeMode
     atom.workspace.observeTextEditors (editor) =>
       atom.views.getView(editor).classList.add(@className)
       @editorCallbacks.add editor.onWillInsertText (text) => @onType(editor)
-      @editorCallbacks.add editor.onDidInsertText (text) => @onAfterType(editor)
       @editorCallbacks.add editor.getLastCursor().onDidChangeVisibility (visibility) =>
         atom.views.getView(editor).classList.add(@className)
     @active = true
@@ -46,8 +45,5 @@ class OvertypeMode
       continue if selection.isEmpty() && selection.cursor.isAtEndOfLine()
       if selection.isEmpty()
         selection.selectRight()
-
-  onAfterType: (editor) ->
-    return unless window.event instanceof TextEvent
 
 module.exports = new OvertypeMode
