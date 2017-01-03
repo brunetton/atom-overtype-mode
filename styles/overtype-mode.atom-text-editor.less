@@ -1,7 +1,7 @@
 // Using current syntax cursor colour
 @import 'syntax-variables';
 
-atom-text-editor.overtype-cursor::shadow .cursors .cursor
+atom-text-editor.overtype-cursor.editor .cursors .cursor
 {
   opacity: 1;
   color: transparent;
@@ -11,11 +11,11 @@ atom-text-editor.overtype-cursor::shadow .cursors .cursor
   background-color: fade(@syntax-cursor-color, 20%);
 }
 
-atom-text-editor.overtype-cursor::shadow .cursors.blink-off .cursor
+atom-text-editor.overtype-cursor.editor .cursors.blink-off .cursor
 {
   border: none;
 }
 
-atom-text-editor[mini]:not(.is-focused)::shadow .cursors .cursor {
+atom-text-editor[mini]:not(.is-focused).editor .cursors .cursor {
   display: none;
 }
