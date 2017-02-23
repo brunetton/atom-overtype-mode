@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.3
+- Fix deprecated CSS selectors. Thanks to @mateddy for PR #17.
+
 ## 0.3.2
 - Fix erratic behaviour after opening new files
 
