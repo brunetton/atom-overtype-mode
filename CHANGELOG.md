@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.4
+- Require Atom version >= 1.13. The updated selectors aren't available in earlier versions.
+
 ## 0.3.3
 - Fix deprecated CSS selectors. Thanks to @mateddy for PR #17.
 
