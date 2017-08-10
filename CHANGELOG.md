@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.0
+- Fixed error in Atom 1.19
+
 ## 0.3.4
 - Require Atom version >= 1.13. The updated selectors aren't available in earlier versions.
 
