@@ -43,8 +43,6 @@ class OvertypeMode
   prepareEditor: (editor) ->
     @updateCursorStyle()
     @events.add editor.onWillInsertText (text) => @onType(editor)
-    @events.add editor.getLastCursor().onDidChangeVisibility (visibility) =>
-      @updateCursorStyle()
 
   onType: (editor) ->
     return unless @active
